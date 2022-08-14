@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Food Recipes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="recipes_fragment_menu_title">Recipes</string>
+    <string name="favorite_recipes_fragment_menu_title">Favorites</string>
+    <string name="food_joke_menu_title">Joke</string>
 </resources>
