@@ -4,4 +4,10 @@
     <string name="recipes_fragment_menu_title">Recipes</string>
     <string name="favorite_recipes_fragment_menu_title">Favorites</string>
     <string name="food_joke_menu_title">Joke</string>
+    <string name="restaurant_floating_button_description">Restaurant floating button</string>
+    <string name="connection_error_icon">Connection error icon</string>
+    <string name="connection_error_text">No internet connection</string>
+    <string name="favorite_recipe_icon_description">Favorite recipe icon</string>
+    <string name="recipe_clock_icon_description">Recipe clock icon</string>
+    <string name="recipe_vegan_icon_description">Recipe vegan icon</string>
 </resources>
