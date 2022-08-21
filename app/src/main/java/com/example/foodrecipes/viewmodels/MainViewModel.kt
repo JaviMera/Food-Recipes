@@ -1,9 +1,7 @@
-package com.example.foodrecipes
+package com.example.foodrecipes.viewmodels
 
-import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +9,6 @@ import com.example.foodrecipes.data.Repository
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
