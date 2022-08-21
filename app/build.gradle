@@ -35,6 +35,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -62,10 +67,6 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.3"
     androidTestImplementation "androidx.room:room-testing:2.4.3"
-
-    // Data binding
-    kapt "com.android.databinding:compiler:3.2.0-alpha10"
-    kapt "androidx.databinding:databinding-common:7.2.2"
 
     // DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
@@ -104,4 +105,9 @@ dependencies {
 
     // Jsoup
     implementation 'org.jsoup:jsoup:1.13.1'
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

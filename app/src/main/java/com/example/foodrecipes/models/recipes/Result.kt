@@ -4,6 +4,8 @@ package com.example.foodrecipes.models.recipes
 import com.google.gson.annotations.SerializedName
 
 data class Result(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int,
     @SerializedName("cheap")

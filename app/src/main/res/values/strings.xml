@@ -10,4 +10,5 @@
     <string name="favorite_recipe_icon_description">Favorite recipe icon</string>
     <string name="recipe_clock_icon_description">Recipe clock icon</string>
     <string name="recipe_vegan_icon_description">Recipe vegan icon</string>
+    <string name="vegan_item_text">vegan</string>
 </resources>
