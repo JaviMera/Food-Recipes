@@ -1,4 +1,4 @@
-package com.example.foodrecipes.data
+package com.example.foodrecipes.data.network
 
 import com.example.foodrecipes.data.network.FoodRecipesApi
 import com.example.foodrecipes.models.recipes.FoodRecipe

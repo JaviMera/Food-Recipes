@@ -1,7 +1,6 @@
 package com.example.foodrecipes.data
 
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.ViewModelScoped
+import com.example.foodrecipes.data.network.RemoteDataSource
 import javax.inject.Inject
 
 class Repository @Inject constructor(
