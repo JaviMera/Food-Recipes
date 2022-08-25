@@ -11,6 +11,7 @@ import com.example.foodrecipes.R
 fun setImageFromUrl(imageView: ImageView, imageUrl: String){
     imageView.load(imageUrl){
         crossfade(600)
+        error(R.drawable.ic_error_placeholder)
     }
 }
 @BindingAdapter("veganImageColor")
