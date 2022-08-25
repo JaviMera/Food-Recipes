@@ -8,7 +8,7 @@ import com.example.foodrecipes.data.local.RecipeEntity
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.util.NetworkResult
 
-@BindingAdapter("apiResponse, readDatabase", requireAll = true)
+@BindingAdapter("apiResponse", "readDatabase", requireAll = true)
 fun setErrorImageVisibility(
     imageView: ImageView,
     apiResponse: NetworkResult<FoodRecipe>?,
@@ -23,7 +23,7 @@ fun setErrorImageVisibility(
     }
 }
 
-@BindingAdapter("apiResponse2, readDatabase2", requireAll = true)
+@BindingAdapter("apiResponse2", "readDatabase2", requireAll = true)
 fun setErrorTextVisibility(
     textView: TextView,
     apiResponse: NetworkResult<FoodRecipe>?,
