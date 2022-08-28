@@ -10,7 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodrecipes.R
 import com.example.foodrecipes.viewmodels.MainViewModel
 import com.example.foodrecipes.adapters.RecipesAdapter
 import com.example.foodrecipes.databinding.FragmentRecipesBinding
@@ -22,6 +25,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
+
+    private val args: RecipesFragmentArgs by navArgs()
 
     private lateinit var mainViewModel: MainViewModel
     private lateinit var recipesViewModel: RecipesViewModel
@@ -46,6 +51,10 @@ class RecipesFragment : Fragment() {
         binding.mainViewModel = mainViewModel
         setupRecyclerView()
         readDatabase()
+
+        binding.recipesFab.setOnClickListener{
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheetFragment)
+        }
         return binding.root
     }
 
@@ -57,8 +66,7 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch{
             mainViewModel.readRecipes.observeOnce(viewLifecycleOwner){ database ->
-                if(database.isNotEmpty()){
-                    Log.d("RecipesFragment", "readDatabase called")
+                if(database.isNotEmpty() && !args.backFromBottomSheet){
                     adapter.submitList(database[0].foodRecipe.results)
                     binding.shimmerLayout.hideShimmer()
                     binding.shimmerLayout.visibility = View.GONE
@@ -78,7 +86,6 @@ class RecipesFragment : Fragment() {
     }
 
     private fun requestApiData() {
-        Log.d("RecipesFragment", "requestApiData called")
         mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {

@@ -11,4 +11,31 @@
     <string name="recipe_clock_icon_description">Recipe clock icon</string>
     <string name="recipe_vegan_icon_description">Recipe vegan icon</string>
     <string name="vegan_item_text">vegan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="meal_type_text">Meal Type</string>
+    <string name="main_course_chip_text">Main Course</string>
+    <string name="side_dish_chip_text">Side Dish</string>
+    <string name="dessert_chip_text">Dessert</string>
+    <string name="appetizer_chip_text">Appetizer</string>
+    <string name="salad_chip_text">Salad</string>
+    <string name="bread_chip_text">Bread</string>
+    <string name="breakfast_chip_text">Breakfast</string>
+    <string name="soup_chip_text">Soup</string>
+    <string name="beverage_chip_text">Beverage</string>
+    <string name="sauce_chip_text">Sauce</string>
+    <string name="marinade_chip_text">Marinade</string>
+    <string name="fingerfood_chip_text">Fingerfood</string>
+    <string name="snack_chip_text">Snack</string>
+    <string name="drink_chip_text">Drink</string>
+    <string name="diet_type_text">Diet Type</string>
+    <string name="gluten_free_chip_text">Gluten Free</string>
+    <string name="ketogenic_chip_text">Ketogenic</string>
+    <string name="vegetarian_chip_text">Vegetarian</string>
+    <string name="vegan_chip_text">Vegan</string>
+    <string name="pescetarian_chip_text">Pescetarian</string>
+    <string name="primal_chip_text">Primal</string>
+    <string name="low_fodmap_chip_text">Low FODMAP</string>
+    <string name="whole30_chip_text">Whole 30</string>
+    <string name="apply_button_text">Apply</string>
 </resources>
