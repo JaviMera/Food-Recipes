@@ -1,6 +1,7 @@
 package com.example.foodrecipes.viewmodels
 
 import android.net.ConnectivityManager
+import android.net.Network
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.foodrecipes.data.Repository
@@ -30,9 +31,29 @@ class MainViewModel @Inject constructor(
 
     // Retrofit
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    var searchedRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
+    }
+
+    fun searchRecipes(queries: Map<String, String>) = viewModelScope.launch {
+        searchRecipesSafeCAll(queries)
+    }
+
+    private suspend fun searchRecipesSafeCAll(queries: Map<String, String>) {
+        searchedRecipesResponse.value = NetworkResult.Loading()
+
+        if(hasInternetConnection()){
+            try {
+                val response = repository.remote.searchRecipes(queries)
+                searchedRecipesResponse.value = handleFoodRecipesResponse(response)
+            } catch (e: Exception){
+                searchedRecipesResponse.value = NetworkResult.Error("Recipes not found.")
+            }
+        } else{
+            searchedRecipesResponse.value = NetworkResult.Error("No Internet connection")
+        }
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {

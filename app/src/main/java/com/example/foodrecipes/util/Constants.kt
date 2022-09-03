@@ -13,6 +13,7 @@ class Constants {
         const val QUERY_DIET = "diet"
         const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
         const val QUERY_FILL_INGREDIENTS = "fillIngredients"
+        const val QUERY_SEARCH="query"
 
         // Room database
         const val DATABASE_NAME = "recipes_database"
@@ -27,5 +28,7 @@ class Constants {
         const val PREFERENCES_DIET_TYPE = "dietType"
         const val PREFERENCES_DIET_TYPE_ID = "dietTypeId"
         const val PREFERENCES_NAME = "food_name"
+
+        const val PREFERENCES_BACK_ONLINE = "backOnline"
     }
 }

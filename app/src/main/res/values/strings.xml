@@ -38,4 +38,5 @@
     <string name="low_fodmap_chip_text">Low FODMAP</string>
     <string name="whole30_chip_text">Whole 30</string>
     <string name="apply_button_text">Apply</string>
+    <string name="ic_search_title">Search</string>
 </resources>
