@@ -1,11 +1,17 @@
 package com.example.foodrecipes.adapters
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import coil.load
 import com.example.foodrecipes.R
+import com.example.foodrecipes.models.recipes.Result
+import com.example.foodrecipes.ui.fragments.recipes.RecipesFragmentDirections
+import org.jsoup.Jsoup
 
 @BindingAdapter("imageFromUrl")
 fun setImageFromUrl(imageView: ImageView, imageUrl: String){
@@ -25,5 +31,24 @@ fun setVeganImageColor(imageView: ImageView, isVegan: Boolean){
 fun setVeganTextColor(textView: TextView, isVegan: Boolean){
     if(isVegan){
         textView.setTextColor(ContextCompat.getColor(textView.context, R.color.green))
+    }
+}
+
+@BindingAdapter("onRecipeClickListener")
+fun onRecipeClickListener(recipeItemLayout: ConstraintLayout, result: Result){
+    recipeItemLayout.setOnClickListener {
+        try{
+            val action = RecipesFragmentDirections.actionRecipesFragmentToDetailsActivity(result.id)
+            recipeItemLayout.findNavController().navigate(action)
+        }catch (exception: Exception){
+            Log.d("onRecipeClickListener", exception.toString())
+        }
+    }
+}
+
+@BindingAdapter("parseHtml")
+fun parseHtml(textView: TextView, description: String?){
+    description?.let {
+        textView.text = Jsoup.parse(description).text()
     }
 }

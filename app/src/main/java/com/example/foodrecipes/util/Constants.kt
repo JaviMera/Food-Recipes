@@ -30,5 +30,7 @@ class Constants {
         const val PREFERENCES_NAME = "food_name"
 
         const val PREFERENCES_BACK_ONLINE = "backOnline"
+
+        const val RECIPE_RESULT_KEY = "recipeBundle"
     }
 }

@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.example.foodrecipes.data.local.RecipeEntity
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.util.NetworkResult
+import org.jsoup.Jsoup
 
 @BindingAdapter("apiResponse", "readDatabase", requireAll = true)
 fun setErrorImageVisibility(

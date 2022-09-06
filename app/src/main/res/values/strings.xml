@@ -39,4 +39,19 @@
     <string name="whole30_chip_text">Whole 30</string>
     <string name="apply_button_text">Apply</string>
     <string name="ic_search_title">Search</string>
+    <string name="overview_vegetarian_option_title">Vegetarian</string>
+    <string name="overview_vegetarian_option_description">Vegetarian option icon</string>
+    <string name="overview_vegan_option_title">Vegan</string>
+    <string name="overview_vegan_option_description">Vegan option icon</string>
+    <string name="overview_gluten_free_icon_description">Gluten Free icon</string>
+    <string name="overview_gluten_free_title">Gluten Free</string>
+    <string name="overview_dairy_free_icon_description">Dairy Free icon</string>
+    <string name="overview_dairy_free_title">Dairy Free</string>
+    <string name="overview_healthy_icon_description">Healthy icon</string>
+    <string name="overview_healthy_title">Healthy</string>
+    <string name="overview_cheap_healthy_icon_description">Cheap healthy icon</string>
+    <string name="overview_cheap_title">Cheap</string>
+    <string name="overview_likes_icon_description">Likes icon</string>
+    <string name="overview_time_icon_description">Time icon</string>
+    <string name="overview_image_icon_description">Overview image icon</string>
 </resources>
