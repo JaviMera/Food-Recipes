@@ -54,4 +54,5 @@
     <string name="overview_likes_icon_description">Likes icon</string>
     <string name="overview_time_icon_description">Time icon</string>
     <string name="overview_image_icon_description">Overview image icon</string>
+    <string name="ingredient_picture_description">Ingredient picture</string>
 </resources>

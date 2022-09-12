@@ -1,4 +1,4 @@
-package com.example.foodrecipes.adapters
+package com.example.foodrecipes.bindingadapters
 
 import android.util.Log
 import android.widget.ImageView
@@ -11,6 +11,7 @@ import coil.load
 import com.example.foodrecipes.R
 import com.example.foodrecipes.models.recipes.Result
 import com.example.foodrecipes.ui.fragments.recipes.RecipesFragmentDirections
+import com.example.foodrecipes.util.Constants.Companion.BASE_IMAGE_URL
 import org.jsoup.Jsoup
 
 @BindingAdapter("imageFromUrl")
@@ -20,6 +21,16 @@ fun setImageFromUrl(imageView: ImageView, imageUrl: String){
         error(R.drawable.ic_error_placeholder)
     }
 }
+
+@BindingAdapter("ingredientImageUrl")
+fun setIngredientImageUrl(imageView: ImageView, imageUrl: String){
+
+    imageView.load("${BASE_IMAGE_URL}${imageUrl}"){
+        crossfade(600)
+        error(R.drawable.ic_error_placeholder)
+    }
+}
+
 @BindingAdapter("veganImageColor")
 fun setVeganImageColor(imageView: ImageView, isVegan: Boolean){
     if(isVegan){

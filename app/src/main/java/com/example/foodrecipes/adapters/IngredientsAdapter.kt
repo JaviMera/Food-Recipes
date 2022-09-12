@@ -1,5 +1,6 @@
 package com.example.foodrecipes.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,15 +8,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodrecipes.R
-import com.example.foodrecipes.databinding.RecipesItemBinding
-import com.example.foodrecipes.models.recipes.Result
+import com.example.foodrecipes.databinding.IngredientsItemBinding
+import com.example.foodrecipes.models.recipes.ExtendedIngredient
 
-class RecipesAdapter : ListAdapter<Result, RecipesAdapter.ViewHolder>(ResultDiffCallBack()) {
+class IngredientsAdapter : ListAdapter<ExtendedIngredient, IngredientsAdapter.ViewHolder>(IngredientDiffCallback()) {
 
-    class ViewHolder(private val binding: RecipesItemBinding) :
+    class ViewHolder(private val binding: IngredientsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(result: Result) {
-            binding.result = result
+        fun bind(ingredient: ExtendedIngredient) {
+            binding.ingredient = ingredient
             binding.executePendingBindings()
         }
     }
@@ -24,26 +25,27 @@ class RecipesAdapter : ListAdapter<Result, RecipesAdapter.ViewHolder>(ResultDiff
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.recipes_item,
+            R.layout.ingredients_item,
             parent,
             false
-        ) as RecipesItemBinding
+        ) as IngredientsItemBinding
+        Log.d("IngredientsAdapter", "Creating ViewHolder")
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = getItem(position)
+        Log.d("IngredientsAdapter", result.toString())
         holder.bind(result)
     }
 
-    class ResultDiffCallBack : DiffUtil.ItemCallback<Result>() {
-        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+    class IngredientDiffCallback : DiffUtil.ItemCallback<ExtendedIngredient>() {
+        override fun areItemsTheSame(oldItem: ExtendedIngredient, newItem: ExtendedIngredient): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+        override fun areContentsTheSame(oldItem: ExtendedIngredient, newItem: ExtendedIngredient): Boolean {
             return oldItem == newItem
         }
     }
 }
-

@@ -7,6 +7,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ExtendedIngredient(
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("amount")
     val amount: Double,
     @SerializedName("consistency")
