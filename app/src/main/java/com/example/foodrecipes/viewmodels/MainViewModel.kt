@@ -1,11 +1,11 @@
 package com.example.foodrecipes.viewmodels
 
 import android.net.ConnectivityManager
-import android.net.Network
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.foodrecipes.data.Repository
-import com.example.foodrecipes.data.local.RecipeEntity
+import com.example.foodrecipes.data.local.entities.FavoriteEntity
+import com.example.foodrecipes.data.local.entities.RecipeEntity
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.models.recipes.Result
 import com.example.foodrecipes.util.Constants
@@ -30,6 +30,21 @@ class MainViewModel @Inject constructor(
             repository.local.insertRecipe(recipeEntity)
         }
     }
+
+    private fun insertFavoriteRecipe(favoriteEntity: FavoriteEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoriteEntity)
+        }
+
+    private fun deleteFavoriteRecipe(favoriteEntity: FavoriteEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoriteRecipe(favoriteEntity)
+        }
+
+    private fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
+        }
 
     // Retrofit
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()

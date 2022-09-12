@@ -1,4 +1,4 @@
-package com.example.foodrecipes.data.local
+package com.example.foodrecipes.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
