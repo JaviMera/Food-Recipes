@@ -12,6 +12,7 @@ import com.example.foodrecipes.util.Constants
 import com.example.foodrecipes.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class MainViewModel @Inject constructor(
 
     // Room Database
     val readRecipes: LiveData<List<RecipeEntity>> = repository.local.getRecipes().asLiveData()
+    val readFavoriteRecipes: LiveData<List<FavoriteEntity>> = repository.local.getFavoriteRecipes().asLiveData()
 
     private fun insertRecipe(recipeEntity: RecipeEntity) {
         viewModelScope.launch(Dispatchers.IO){
@@ -31,12 +33,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun insertFavoriteRecipe(favoriteEntity: FavoriteEntity) =
+    fun insertFavoriteRecipe(favoriteEntity: FavoriteEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertFavoriteRecipes(favoriteEntity)
         }
 
-    private fun deleteFavoriteRecipe(favoriteEntity: FavoriteEntity) =
+    fun deleteFavoriteRecipe(favoriteEntity: FavoriteEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.deleteFavoriteRecipe(favoriteEntity)
         }

@@ -28,7 +28,7 @@ class RecipeTypeConverter {
 
     @TypeConverter
     fun stringToResult(data: String) : Result {
-        val listType = object: TypeToken<FoodRecipe>(){}.type
+        val listType = object: TypeToken<Result>(){}.type
         return gson.fromJson(data, listType)
     }
 }
