@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/lightGray"
-    tools:context=".ui.fragments.favorites.FavoriteRecipesFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.example.foodrecipes.viewmodels.MainViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.example.foodrecipes.adapters.FavoriteRecipesAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"
+        tools:context=".ui.fragments.favorites.FavoriteRecipesFragment">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_recipe_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            viewVisibility="@{mainViewModel.readFavoriteRecipes}"
+            setData="@{adapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/no_data_imageview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:alpha=".5"
+            android:src="@drawable/ic_menu_book"
+            viewVisibility="@{mainViewModel.readFavoriteRecipes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.42000002"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_favorite_recipes"
+            android:alpha=".5"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            viewVisibility="@{mainViewModel.readFavoriteRecipes}"
+            app:layout_constraintEnd_toEndOf="@+id/no_data_imageview"
+            app:layout_constraintStart_toStartOf="@+id/no_data_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/no_data_imageview"
+            android:visibility="invisible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

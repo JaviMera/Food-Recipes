@@ -4,7 +4,6 @@ package com.example.foodrecipes.models.recipes
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
 
 @Parcelize
 data class Result(
@@ -39,3 +38,4 @@ data class Result(
     @SerializedName("veryHealthy")
     val veryHealthy: Boolean,
 ) : Parcelable
+
