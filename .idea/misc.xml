@@ -5,11 +5,12 @@
       <map>
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/drawable/gradient_overlay.xml" value="0.37" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/drawable/ic_error_placeholder.xml" value="0.319" />
+        <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/drawable/splash_screen.xml" value="0.3345" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/activity_details.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/activity_main.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/favorite_recipes_item_layout.xml" value="0.403125" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_favorite_recipes.xml" value="0.3" />
-        <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_food_joke.xml" value="0.24592391304347827" />
+        <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_food_joke.xml" value="0.4613733905579399" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_ingredients.xml" value="0.1983695652173913" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_instructions.xml" value="0.1983695652173913" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/layout/fragment_overview.xml" value="0.3927710843373494" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/menu/details_menu.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/menu/favorite_recipes_menu.xml" value="0.403125" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/menu/favorites_contextual_menu.xml" value="0.2814814814814815" />
+        <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/menu/food_joke_menu.xml" value="0.38055555555555554" />
         <entry key="..\:/Users/javier/AndroidStudioProjects/FoodRecipes/app/src/main/res/menu/recipes_menu.xml" value="0.25625" />
       </map>
     </option>

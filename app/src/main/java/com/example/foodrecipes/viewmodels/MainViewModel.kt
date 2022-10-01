@@ -5,14 +5,15 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.example.foodrecipes.data.Repository
 import com.example.foodrecipes.data.local.entities.FavoriteEntity
+import com.example.foodrecipes.data.local.entities.FoodJokeEntity
 import com.example.foodrecipes.data.local.entities.RecipeEntity
+import com.example.foodrecipes.models.recipes.FoodJoke
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.models.recipes.Result
 import com.example.foodrecipes.util.Constants
 import com.example.foodrecipes.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -26,7 +27,7 @@ class MainViewModel @Inject constructor(
     // Room Database
     val readRecipes: LiveData<List<RecipeEntity>> = repository.local.getRecipes().asLiveData()
     val readFavoriteRecipes: LiveData<List<FavoriteEntity>> = repository.local.getFavoriteRecipes().asLiveData()
-
+    val readFoodJoke: LiveData<List<FoodJokeEntity>> = repository.local.getFoodJoke().asLiveData()
     private fun insertRecipe(recipeEntity: RecipeEntity) {
         viewModelScope.launch(Dispatchers.IO){
             repository.local.insertRecipe(recipeEntity)
@@ -37,6 +38,12 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertFavoriteRecipes(favoriteEntity)
         }
+
+    fun insertFoodJoke(foodJokeEntity: FoodJokeEntity){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFoodJoke(foodJokeEntity)
+        }
+    }
 
     fun deleteFavoriteRecipe(favoriteEntity: FavoriteEntity) =
         viewModelScope.launch(Dispatchers.IO) {
@@ -52,6 +59,7 @@ class MainViewModel @Inject constructor(
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
     var searchedRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
     var recipeResponse: MutableLiveData<NetworkResult<Result>> = MutableLiveData()
+    var foodJokeResponse: MutableLiveData<NetworkResult<FoodJoke>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
@@ -64,6 +72,12 @@ class MainViewModel @Inject constructor(
     fun getRecipe(recipeId: Int) = viewModelScope.launch {
         getRecipeSafeCall(recipeId)
     }
+
+    fun getFoodJoke(apiKey: String) = viewModelScope.launch {
+        getFoodJokeSafeCall(apiKey)
+    }
+
+
 
     private suspend fun getRecipeSafeCall(recipeId: Int) {
 
@@ -118,9 +132,34 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    private suspend fun getFoodJokeSafeCall(apiKey: String) {
+        foodJokeResponse.value = NetworkResult.Loading()
+
+        if(hasInternetConnection()){
+            try {
+                val response = repository.remote.getFoodJoke(apiKey)
+                foodJokeResponse.value = handleFoodJokeResponse(response)
+
+                val foodJoke = foodJokeResponse.value!!.data
+                if(foodJoke != null){
+                    offlineCacheFoodJoke(foodJoke)
+                }
+            } catch (e: Exception){
+                foodJokeResponse.value = NetworkResult.Error("Food joke not found.")
+            }
+        } else{
+            foodJokeResponse.value = NetworkResult.Error("No Internet connection")
+        }
+    }
+
     private fun offlineCacheRecipe(foodRecipe: FoodRecipe) {
         val recipeEntity = RecipeEntity(foodRecipe)
         insertRecipe(recipeEntity)
+    }
+
+    private fun offlineCacheFoodJoke(foodJoke: FoodJoke){
+        val foodJokeEntity = FoodJokeEntity(foodJoke)
+        insertFoodJoke(foodJokeEntity)
     }
 
     private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe>? {
@@ -143,7 +182,21 @@ class MainViewModel @Inject constructor(
             response.code() == 402 -> {
                 NetworkResult.Error("API Key Limited")
             }
-            response.code() == 404 -> NetworkResult.Error("Recipes not found.")
+            response.code() == 404 -> NetworkResult.Error("Recipe not found.")
+            response.isSuccessful -> NetworkResult.Success(response.body()!!)
+            else ->{
+                NetworkResult.Error(response.message())
+            }
+        }
+    }
+
+    private fun handleFoodJokeResponse(response: Response<FoodJoke>): NetworkResult<FoodJoke>? {
+        return when{
+            response.message().toString().contains("timeout") -> NetworkResult.Error("Timeout")
+            response.code() == 402 -> {
+                NetworkResult.Error("API Key Limited")
+            }
+            response.code() == 404 -> NetworkResult.Error("Food joke not found.")
             response.isSuccessful -> NetworkResult.Success(response.body()!!)
             else ->{
                 NetworkResult.Error(response.message())

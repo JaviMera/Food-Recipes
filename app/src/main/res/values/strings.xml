@@ -59,4 +59,6 @@
     <string name="no_favorite_recipes">No Favorite Recipes</string>
     <string name="delete_favorite_menu">Delete Favorite Menu</string>
     <string name="delete_all">Delete All</string>
+    <string name="food_joke_sample">Food is very good</string>
+    <string name="share_food_joke_menu_item">Share</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.foodrecipes.data.network
 
+import com.example.foodrecipes.models.recipes.FoodJoke
 import com.example.foodrecipes.models.recipes.FoodRecipe
 import com.example.foodrecipes.models.recipes.Result
 import retrofit2.Response
@@ -25,4 +26,9 @@ interface FoodRecipesApi {
         @Path("id") id: Int,
         @QueryMap queries: Map<String, String>
     ) : Response<Result>
+
+    @GET("/food/jokes/random")
+    suspend fun getFoodJoke(
+        @Query("apiKey") apiKey: String
+    ) : Response<FoodJoke>
 }
